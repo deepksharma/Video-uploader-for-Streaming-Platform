@@ -10,7 +10,8 @@ import {
   Select,
   TextField,
   Typography,
-  Box
+  Box,
+  Alert
 } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
@@ -25,7 +26,7 @@ function Upload() {
   const [visibility, setVisibility] = useState("");
   const [videoFile, setVideoFile] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   function fileBoxChanged(event){
     setVideoFile(event.target.files[0]);
@@ -57,13 +58,12 @@ function Upload() {
     formData.append("visibility", visibility);
     formData.append("videoFile", videoFile);
 
-     const response =  await axios.post(videoUploadUrl, formData, {
+    await axios.post(videoUploadUrl, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": 'multipart/form-data'
       }
     });
-
 
     setMessage("Video uploaded successfully");
     toast.success("uploaded successfully");
@@ -77,9 +77,6 @@ function Upload() {
       setLoading(false);
     }  
   }
-
-
-    
 
   return (
     <Container maxWidth="md">
@@ -194,9 +191,9 @@ function Upload() {
 
           <Box display={"flex"} justifyContent="center">
             <Button
-             loading={loading}
-             loadingPosition="start"
-             disabled={loading}
+              loading={loading}
+              loadingPosition="start"
+              disabled={loading}
               onClick={formSubmitted}
               variant="contained"
               color="primary"

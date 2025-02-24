@@ -11,9 +11,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useAuth } from '../helper/AuthContext';
 
 function CustomNavbar() {
-    const [auth, setAuth] = React.useState(true);
+
+   const {logoutUser , token} = useAuth()
+
+
+  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event) => {
@@ -45,7 +50,7 @@ function CustomNavbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Video Uploader
           </Typography>
-          {auth && (
+          {token && (
             <div>
               <IconButton
                 size="large"
@@ -73,7 +78,9 @@ function CustomNavbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={()=>{
+                  logoutUser()
+                }}>Logout</MenuItem>
               </Menu>
             </div>
           )}
