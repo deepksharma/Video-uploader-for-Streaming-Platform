@@ -18,22 +18,21 @@ import { AuthProvider } from './helper/AuthContext.jsx';
 createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId="1084665983072-ibn3m3epuqjlbj02d403dk9afntg8ul0.apps.googleusercontent.com">
     <AuthProvider>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <Toaster />
-      <BrowserRouter>
-        <Routes>
-        <Route path='' element={<Navigate to={'/login'} />} />
-          <Route path='/dashboard' element={<Home />} >
-           
-            <Route path='upload' element={<Upload />} />
-            <Route path='list' element={<h1>This is list page</h1>} />
-          </Route>
-          <Route path='/login' element={<Login />} />
-          <Route path='/about' element={<App />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Toaster />
+        <BrowserRouter>
+          <Routes>
+            <Route path='' element={<Navigate to={'/login'} />} />
+            <Route path='/dashboard' element={<Home />} >
+              <Route path='upload' element={<Upload />} />
+              <Route path='list' element={<h1>This is list page</h1>} />
+            </Route>
+            <Route path='/login' element={<Login />} />
+            <Route path='/about' element={<App />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </AuthProvider>
   </GoogleOAuthProvider>
 );
