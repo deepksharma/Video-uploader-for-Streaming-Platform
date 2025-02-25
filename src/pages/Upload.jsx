@@ -55,6 +55,7 @@ function Upload() {
       }
 
       const videoUploadUrl = "http://localhost:8080/api/v1/uploadVideo";
+      
       const formData = new FormData();
       formData.append("title", title);
       formData.append("desc", desc);
@@ -85,6 +86,7 @@ function Upload() {
       setLoading(false);
     }
 }
+
 
 
   return (
@@ -174,7 +176,8 @@ function Upload() {
             </Select>
           </FormControl>
 
-          <Box display={"flex"} justifyContent="center">
+          <Box display={"flex"} gap={2} justifyContent="center">
+            <Button variant="outlined">Generate Meta Data</Button>
             <Button
               onClick={formSubmitted}
               variant="contained"
